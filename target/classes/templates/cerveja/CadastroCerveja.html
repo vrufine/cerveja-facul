@@ -1,26 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Cerveja</title>
 </head>
+
 <body>
+
+  <h1>Cadastrar nova cerveja</h1>
+
   <form method="post">
+
+    <span th:text="${mensagem}"></span>
+
+    <br>
+    <br>
+    
     <label for="sku">SKU</label>
     <input type="text" name="sku" id="sku" autofocus>
 
     <br>
     <br>
-    
+
     <label for="nome">Nome</label>
     <input type="text" name="nome" id="nome">
 
-    <br>  
-    <br>  
-    
+    <br>
+    <br>
+
     <input type="submit" value="Salvar">
   </form>
 </body>
+
 </html>
