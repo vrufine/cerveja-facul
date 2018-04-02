@@ -20,16 +20,16 @@ import com.aula.cerveja.controller.CervejasController;
 
 @Configuration
 @ComponentScan(basePackageClasses = {CervejasController.class})
-@EnableWebMvc
+@EnableWebMvc										   
 public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationContextAware {
-	
+		
 	private ApplicationContext applicationContext;
-
+	
 	@Override
 	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
 		this.applicationContext = applicationContext;		
 	}
-	
+		
 	@Bean
 	public ViewResolver viewResolver() {
 		ThymeleafViewResolver resolver = new ThymeleafViewResolver();
@@ -37,15 +37,15 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
 		resolver.setCharacterEncoding("UTF-8");
 		return resolver;
 	}
-	
+		
 	@Bean
-	public  TemplateEngine templateEngine() {
+	public TemplateEngine templateEngine() {
 		SpringTemplateEngine engine = new SpringTemplateEngine();
 		engine.setEnableSpringELCompiler(true);
 		engine.setTemplateResolver(templateResolver());
 		return engine;
 	}
-	
+		
 	private ITemplateResolver templateResolver() {
 		SpringResourceTemplateResolver resolver = new SpringResourceTemplateResolver();
 		resolver.setApplicationContext(applicationContext);

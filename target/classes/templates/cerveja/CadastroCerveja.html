@@ -2,42 +2,27 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Cerveja</title>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <title>Cadastro Cerveja</title>
 </head>
 
 <body>
-
-  <h1>Cadastrar nova cerveja</h1>
-
-  <form method="post">
-
-    <span th:text="${mensagem}"></span>
-
+  <h1>Cadastro de cerveja</h1>
+  <div th:each="erro : ${#fields.detailedErrors('${cerveja.*}')}">
+    <p th:text="${erro.message}"></p>
+  </div>
+  <form method="POST" th:object="${cerveja}">
+    <p th:text="${mensagem}"></p>
+    <input autofocus placeholder="SKU" type="text" id="sku" th:field="*{sku}"></input>
     <br>
     <br>
-    
-    <label for="sku">SKU</label>
-    <input type="text" name="sku" id="sku" autofocus>
-
+    <input placeholder="Nome" type="text" id="nome" th:field="*{nome}"></input>
     <br>
     <br>
-
-    <label for="nome">Nome</label>
-    <input type="text" name="nome" id="nome">
-
+    <textarea placeholder="Descrição" type="text" id="descricao" th:field="*{descricao}"></textarea>
     <br>
     <br>
-
-    <label for="descricao">Descrição</label>
-    <input type="text" name="descricao" id="descricao">
-
-    <br>
-    <br>
-
-    <input type="submit" value="Salvar">
+    <input type="submit" color="primary" value="Salvar"></input>
   </form>
 </body>
 

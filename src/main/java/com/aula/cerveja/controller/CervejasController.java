@@ -16,24 +16,22 @@ import com.aula.cerveja.model.Cerveja;
 public class CervejasController {
 
 	@RequestMapping("/novo")
-	public String novo() {
+	public String novo(Cerveja cerveja) {
 		return "cerveja/CadastroCerveja";
 	}
 
 	@RequestMapping(value = "/novo", method = RequestMethod.POST)
-	public String cadastrar(
-		@Valid Cerveja cerveja,
-		BindingResult result,
-		Model model,
-		RedirectAttributes attributes
-	) {
+	public String cadastrar(@Valid Cerveja cerveja, BindingResult result, Model model, RedirectAttributes attributes) {
 		if (result.hasErrors()) {
-			model.addAttribute("mensagem", "Erro no formulário!");
-			return "cerveja/CadastroCerveja";
+			System.out.println(">>> sku: " + cerveja.getSku());
+			System.out.println(">>> nome: " + cerveja.getNome());
+			System.out.println(">>> descricao: " + cerveja.getDescricao());
+			return novo(cerveja);
 		}
-		attributes.addFlashAttribute("mensagem", "Salvo com sucesso!");
-		return "redirect:/cervejas/novo";
 
+		attributes.addFlashAttribute("mensagem", "Cerveja salva com sucesso!");
+		System.out.println(">>> sku: " + cerveja.getSku());
+		return "redirect:/cervejas/novo";
 	}
 
 }
